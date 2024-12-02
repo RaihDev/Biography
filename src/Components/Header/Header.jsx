@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header({
   headerTextColor,
@@ -12,12 +13,13 @@ export default function Header({
   const style = {
     header: {
       width: "100%",
-      height: "8%",
+      height: "10%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       bgcolor: headerColor,
       gap: "2rem",
+      scale: "0.8",
     },
     button: {
       cursor: "pointer",
@@ -25,17 +27,20 @@ export default function Header({
     },
   };
 
-  const render_button = (text, color, id) => {
+  const render_button = (text, color, id, link) => {
     const isHovered = Hover === id;
     return (
       <Button
-        disableFocusRipple
+        component={Link}
+        to={link ? link : ""}
         onMouseEnter={() => setHover(id)}
         onMouseLeave={() => setHover(null)}
         key={id}
         sx={{
           ...style.button,
           color: isHovered ? hoverTextColor : color,
+          fontSize: "15px",
+          fontWeight: "bold",
         }}
       >
         {text}
@@ -48,11 +53,13 @@ export default function Header({
       id: 1,
       text: "Apresentação",
       color: headerTextColor,
+      link: "/",
     },
     {
       id: 2,
       text: "Habilidades",
       color: headerTextColor,
+      link: "/Habilidades",
     },
     {
       id: 3,
@@ -89,7 +96,7 @@ export default function Header({
   return (
     <Box sx={style.header}>
       {button_list.map((button) =>
-        render_button(button.text, button.color, button.id)
+        render_button(button.text, button.color, button.id, button.link)
       )}
     </Box>
   );
@@ -101,6 +108,6 @@ Header.prototypes = {
 };
 Header.defaultProps = {
   headerTextColor: "black",
-  hoverTextColor: "#DEB887",
+  hoverTextColor: "red",
   headerColor: "transparent",
 };

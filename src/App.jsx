@@ -1,16 +1,16 @@
-import "./App.css";
-import Container_Geral from "./Components/Container";
-import Header from "./Components/Header";
-import RenderImage from "./Components/RenderImage";
-import CustomCard from "./Components/CustomCard";
+import { BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./views/HomePage";
+import HomePage1 from "./views/Habilidades";
 function App() {
   return (
     <>
-      <Container_Geral color="#c0e8fc" justifyContent="flex-start">
-        <Header />
-        <RenderImage />
-        <CustomCard description={"Teste"} title={"Teste"} image={""} />
-      </Container_Geral>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Habilidades" element={<HomePage1 />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

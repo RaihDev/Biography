@@ -9,6 +9,7 @@ export default function Container_Geral({
   alignItems,
   flexDirection,
   children,
+  imageBackground,
 }) {
   const stylesheet = {
     bgcolor: color,
@@ -21,7 +22,10 @@ export default function Container_Geral({
     justifyContent: justifyContent,
     alignItems: alignItems,
     flexDirection: flexDirection,
-    gap: "2rem",
+    gap: "10px",
+    backgroundImage: `url(${imageBackground || "none"})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   };
   return (
     <React.Fragment>
@@ -44,12 +48,14 @@ Container_Geral.propTypes = {
   alignItems: PropTypes.string,
   flexDirection: PropTypes.string,
   children: PropTypes.node,
+  imageBackground: PropTypes.string,
 };
 
 Container_Geral.defaultProps = {
-  color: "#c0e8fc",
+  color: "#FFFFFF",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+  imageBackground: null,
 };
